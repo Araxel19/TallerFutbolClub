@@ -2,148 +2,161 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Lista de Competiciones</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <style>
-        :root {
-            --dark-bg: #2d3436;
-            --darker-bg: #1e272e;
-            --dark-card: #3d3d3d;
-            --table-bg: #2c3e50;
-            --dark-text: #ecf0f1;
-            --dark-border: #4b4b4b;
-            --primary-accent: #3498db;
-            --secondary-accent: #e74c3c;
-        }
-        
-        body {
-            background-color: var(--dark-bg);
-            color: var(--dark-text);
-        }
-        
-        .table-container {
-            background-color: var(--dark-card);
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            padding: 2rem;
-            border: 1px solid var(--dark-border);
-        }
-        
-        .table-title {
-            color: var(--primary-accent);
-            margin-bottom: 1.5rem;
-        }
-        
-        .table {
-            background-color: var(--table-bg);
-            color: var(--dark-text);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .table th {
-            background-color: var(--darker-bg) !important;
-            color: var(--primary-accent);
-            border-bottom: 2px solid var(--primary-accent);
-        }
-        
-        .table td, .table th {
-            border-color: var(--dark-border) !important;
-            padding: 12px;
-        }
-        
-        .table-hover tbody tr:hover {
-            background-color: rgba(52, 152, 219, 0.1);
-        }
-        
-        .btn-primary {
-            background-color: var(--primary-accent);
-            border-color: var(--primary-accent);
-        }
-        
-        .btn-secondary {
-            background-color: #7f8c8d;
-            border-color: #7f8c8d;
-        }
-        
-        .btn-warning {
-            background-color: #f39c12;
-            border-color: #f39c12;
-        }
-        
-        .btn-danger {
-            background-color: var(--secondary-accent);
-            border-color: var(--secondary-accent);
-        }
-        
-        .btn {
-            transition: all 0.3s ease;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        
-        .currency {
-            font-family: 'Courier New', monospace;
-        }
-    </style>
+	<meta charset="UTF-8">
+	<title>Lista de Competiciones</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+	<style>
+		:root {
+			--dark-bg: #2d3436;
+			--darker-bg: #1e272e;
+			--dark-card: #3d3d3d;
+			--table-bg: #2c3e50;
+			--dark-text: #ecf0f1;
+			--dark-border: #4b4b4b;
+			--primary-accent: #3498db;
+			--secondary-accent: #e74c3c;
+		}
+
+		body {
+			background-color: var(--dark-bg);
+			color: var(--dark-text);
+		}
+
+		.table-container {
+			background-color: var(--dark-card);
+			border-radius: 10px;
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+			padding: 2rem;
+			border: 1px solid var(--dark-border);
+		}
+
+		.table-title {
+			color: var(--primary-accent);
+			margin-bottom: 1.5rem;
+		}
+
+		.table {
+			background-color: var(--table-bg);
+			color: var(--dark-text);
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		.table th {
+			background-color: var(--darker-bg) !important;
+			color: var(--primary-accent);
+			border-bottom: 2px solid var(--primary-accent);
+		}
+
+		.table td,
+		.table th {
+			border-color: var(--dark-border) !important;
+			padding: 12px;
+		}
+
+		.table-hover tbody tr:hover {
+			background-color: rgba(52, 152, 219, 0.1);
+		}
+
+		.btn-primary {
+			background-color: var(--primary-accent);
+			border-color: var(--primary-accent);
+		}
+
+		.btn-secondary {
+			background-color: #7f8c8d;
+			border-color: #7f8c8d;
+		}
+
+		.btn-warning {
+			background-color: #f39c12;
+			border-color: #f39c12;
+		}
+
+		.btn-danger {
+			background-color: var(--secondary-accent);
+			border-color: var(--secondary-accent);
+		}
+
+		.btn {
+			transition: all 0.3s ease;
+		}
+
+		.btn:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		}
+
+		.currency {
+			font-family: 'Courier New', monospace;
+		}
+	</style>
 </head>
 
 <body>
-    <div class="container py-5">
-        <div class="table-container">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="table-title">Competiciones</h1>
-                <div>
-                    <a th:href="@{/competiciones/nuevo}" class="btn btn-primary me-2">
-                        <i class="bi bi-trophy"></i> Nueva Competición
-                    </a>
-                    <a th:href="@{/}" class="btn btn-secondary">
-                        <i class="bi bi-arrow-left"></i> Volver al Inicio
-                    </a>
-                </div>
-            </div>
-            
-            <div class="table-responsive">
-                <table class="table table-hover align-middle">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Monto Premio</th>
-                            <th>Fecha Inicio</th>
-                            <th>Fecha Fin</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="competicion : ${competiciones}">
-                            <td th:text="${competicion.id}"></td>
-                            <td th:text="${competicion.nombre}"></td>
-                            <td class="currency" th:text="${'$' + #numbers.formatDecimal(competicion.montoPremio, 1, 2, 'POINT')}"></td>
-                            <td th:text="${#temporals.format(competicion.fechaInicio, 'dd/MM/yyyy')}"></td>
-                            <td th:text="${#temporals.format(competicion.fechaFin, 'dd/MM/yyyy')}"></td>
-                            <td>
-                                <div class="d-flex">
-                                    <a th:href="@{/competiciones/editar/{id}(id=${competicion.id})}" class="btn btn-warning me-2">
-                                        <i class="bi bi-pencil"></i> Editar
-                                    </a>
-                                    <a th:href="@{/competiciones/eliminar/{id}(id=${competicion.id})}" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i> Eliminar
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<div class="container py-5">
+		<div class="table-container">
+			<div class="d-flex justify-content-between align-items-center mb-4">
+				<h1 class="table-title">Competiciones</h1>
+				<div>
+					<a th:href="@{/competiciones/nuevo}" class="btn btn-primary me-2">
+						<i class="bi bi-trophy"></i> Nueva Competición
+					</a>
+					<a th:href="@{/}" class="btn btn-secondary">
+						<i class="bi bi-arrow-left"></i> Volver al Inicio
+					</a>
+				</div>
+			</div>
+
+			<div class="table-responsive">
+				<table class="table table-hover align-middle">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nombre</th>
+							<th>Monto Premio</th>
+							<th>Fecha Inicio</th>
+							<th>Fecha Fin</th>
+							<th>Clubes</th>
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="competicion : ${competiciones}">
+							<td th:text="${competicion.id}"></td>
+							<td th:text="${competicion.nombre}"></td>
+							<td class="currency"
+								th:text="${'$' + #numbers.formatDecimal(competicion.montoPremio, 1, 2, 'POINT')}"></td>
+							<td th:text="${#temporals.format(competicion.fechaInicio, 'dd/MM/yyyy')}"></td>
+							<td th:text="${#temporals.format(competicion.fechaFin, 'dd/MM/yyyy')}"></td>
+							<td>
+								<ul th:if="${competicion.clubes != null and !competicion.clubes.isEmpty()}"
+									class="mb-0 ps-3">
+									<li th:each="club : ${competicion.clubes}" th:text="${club.nombre}"></li>
+								</ul>
+							</td>
+							<td>
+								<div class="d-flex">
+									<a th:href="@{/competiciones/editar/{id}(id=${competicion.id})}"
+										class="btn btn-warning me-2">
+										<i class="bi bi-pencil"></i> Editar
+									</a>
+									<a th:href="@{/competiciones/eliminar/{id}(id=${competicion.id})}"
+										class="btn btn-danger">
+										<i class="bi bi-trash"></i> Eliminar
+									</a>
+								</div>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

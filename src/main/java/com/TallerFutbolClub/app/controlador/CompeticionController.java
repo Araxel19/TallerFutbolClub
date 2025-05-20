@@ -1,6 +1,7 @@
 package com.TallerFutbolClub.app.controlador;
 
 import com.TallerFutbolClub.app.entidades.Competicion;
+import com.TallerFutbolClub.app.repositorio.ClubRepositorio;
 import com.TallerFutbolClub.app.repositorio.CompeticionRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ public class CompeticionController {
 
     @Autowired
     private CompeticionRepositorio competicionRepositorio;
+    @Autowired
+    private ClubRepositorio clubRepositorio;
 
     @GetMapping
     public String listarCompeticiones(Model model) {
@@ -23,6 +26,7 @@ public class CompeticionController {
     @GetMapping("/nuevo")
     public String formularioNuevaCompeticion(Model model) {
         model.addAttribute("competicion", new Competicion());
+        model.addAttribute("clubesDisponibles", clubRepositorio.findAll());
         return "competiciones/formulario";
     }
 
@@ -36,6 +40,7 @@ public class CompeticionController {
     public String editarCompeticion(@PathVariable Long id, Model model) {
         Competicion competicion = competicionRepositorio.findById(id).orElse(null);
         model.addAttribute("competicion", competicion);
+        model.addAttribute("clubesDisponibles", clubRepositorio.findAll());
         return "competiciones/formulario";
     }
 

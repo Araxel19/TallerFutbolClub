@@ -27,8 +27,9 @@ public class Club {
     @JoinColumn(name = "id_asociacion")
     private Asociacion asociacion;
 
-    @ManyToMany
-    private List<Competicion> competiciones;
+    @ManyToOne
+    @JoinColumn(name = "competicion_id")
+    private Competicion competicion;
 
 	public Long getId() {
 		return id;
@@ -62,12 +63,12 @@ public class Club {
 		this.asociacion = asociacion;
 	}
 
-	public List<Competicion> getCompeticiones() {
-		return competiciones;
+	public Competicion getCompeticion() {
+	    return competicion;
 	}
 
-	public void setCompeticiones(List<Competicion> competiciones) {
-		this.competiciones = competiciones;
+	public void setCompeticion(Competicion competicion) {
+	    this.competicion = competicion;
 	}
 
 	public String getNombre() {
