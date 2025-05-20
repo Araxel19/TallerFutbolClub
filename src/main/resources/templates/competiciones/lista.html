@@ -131,7 +131,7 @@
 							<td th:text="${#temporals.format(competicion.fechaInicio, 'dd/MM/yyyy')}"></td>
 							<td th:text="${#temporals.format(competicion.fechaFin, 'dd/MM/yyyy')}"></td>
 							<td>
-								<ul th:if="${competicion.clubes != null and !competicion.clubes.isEmpty()}"
+								<ul th:if="${competicion != null and competicion.clubes != null and !competicion.clubes.isEmpty()}"
 									class="mb-0 ps-3">
 									<li th:each="club : ${competicion.clubes}" th:text="${club.nombre}"></li>
 								</ul>
